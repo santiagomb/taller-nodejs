@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Demo server en Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/santiagomb/taller-nodejs.git"
+  },
+  "keywords": [
+    "server"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/santiagomb/taller-nodejs/issues"
+  },
+  "homepage": "https://github.com/santiagomb/taller-nodejs#readme"
+}
