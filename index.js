@@ -7,4 +7,4 @@ server.on("request", function(req, res){
 	res.end(JSON.stringify(date));
 });
 
-server.listen(procces.env.PORT || 3000);
+server.listen(process.env.PORT || 3000);
