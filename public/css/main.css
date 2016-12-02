@@ -1,32 +1,61 @@
 body {
-	background-color: #540;
+    background-size: 100% 100%;
 }
 
-header {
-	background-color: #123;
-	font-family: "Times New Roman", Times, serif;
-}
+/*header {
+    background-color: #123;
+    font-family: "Times New Roman", Times, serif;
+}*/
 
 .content {
 
 }
 
+#tecno{
+    font-family: "Comic Sans MS", cursive, sans-serif;    
+    text-align: center;
+    color: green;
+}
+
 #logo{
-	text-align: center;
-	background-color: green;
+    text-align: center;
+    
+}
+
+#kon{
+    text-align: center;
+    height: 250px;
+    width: 350px;
+}
+
+#notfound{
+    text-align: center;
+    height: 680px;
+    width: 650px;
 }
 
 #para1 {
     text-align: center;
-    color: red;	
+    color: red; 
 }
+
+.w3{
+    border-color: #2196F3 !important;
+    border-top-color: rgb(33, 150, 243);
+    border-right-color: rgb(33, 150, 243);
+    border-bottom-color: rgb(33, 150, 243);
+    border-left-color: rgb(33, 150, 243);
+    border-collapse: collapse;
+}
+
+
 
 li{
     list-style-type: none;
 }
 
 footer{
-	background-color: red;
+    background-color: red;
 }
 
 .ul.pagination {

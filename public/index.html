@@ -7,14 +7,14 @@
 		<script src="js/main.js"></script>
 		<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 	</head>
-	<body>
-		<header id="logo" onclick="cambiarImagen()">			
+	<body background="img/ppt-backgrounds.jpg">
+		<header id="logo">			
 			<div>
 				<img src="img/gopher.png" alt="Logo del sitio">
 			</div>
 		</header>
-		<h1 id="para1">> . <</h1>
-		<p>This is a paragraph.</p>
+		<h1 id="para1">  </h1>
+		<p>Noticias del día.</p>
 		<div>
 			<ul>
 				<li>¿Querés mostrarnos cuánto sabés de fobal? Entrá <a href="https://http2.mlstatic.com/mesa-jugue-juego-D_NQ_NP_924201-MLA20296529044_052015-F.jpg">aquí</a>!</li>
@@ -24,17 +24,32 @@
 		<div id="articulos">
 			loading ...
 		</div>
+		<article>
+			<div>
+				<h3>
+					Mercado Libre
+				</h3>
+				<p>
+					<a id="vermas" href="http://www.mercadolibre.com.ar"> Ver más! </a>
+				</p>
+			</div>
+		</article>
+
 		<div>
 			<ul class="pagination">
 				<li><a href="tecno.html">&laquo;</a></li>
-				<li><a class="active" href="#">1</a></li>
+				<li><a class="active" href="index.html">1</a></li>
 				<li><a href="tecno.html">2</a></li>
-				<li><a href="#">3</a></li>
+				<li><a onclick="cambiarImagen()">3</a></li>
 				<li><a href="#">4</a></li>
 				<li><a href="#">5</a></li>
 				<li><a href="#">6</a></li>
 				<li><a href="#">&raquo;</a></li>
 			</ul>
+		</div>
+
+		<div>
+			<img id="kon" src="img/kon.png" >
 		</div>
 	</body>
 </html> 

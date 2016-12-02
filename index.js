@@ -3,6 +3,9 @@ var url = require("url");
 var fs = require("fs");
 var path = require("path");
 var mime = require("mime");
+var mu = require("mu2"); // mustach2
+var express = require('express');
+var app = express();
 
 /*var server = http.createServer();
 
@@ -15,9 +18,12 @@ server.on("request", function(req, res){
 	res.end(JSON.stringify(urlData));
 });*/
 
+var err = '404.html';
+var userCount = 0;
+
+
 function send404(response){
-  response.writeHead(404, {"Content-type" : "text/plain"});
-  response.write("Error 404: resource not found");
+  response.writeHead(302, {Location: err});
   response.end();	
 }
 
@@ -47,10 +53,11 @@ var server = http.createServer(function(request, response) {
 
   if (request.url == '/') {
     filePath = "public/index.html";
+    userCount++;
+    console.log(request.connection.remoteAddress);
   } else {
     filePath = "public" + request.url;
   }
-
   var absPath = "./" + filePath;
   serverWorking(response, absPath);
 });

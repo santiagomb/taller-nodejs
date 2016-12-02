@@ -2,8 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "Demo server en Node.js",
-  "dependencies" : {
-    "mime" : "~1.2.7"
+  "dependencies": {
+    "mime": "~1.2.7",
+    "mu2": "^0.5.21"
   },
   "main": "index.js",
   "scripts": {
