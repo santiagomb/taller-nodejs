@@ -4,8 +4,6 @@ var fs = require("fs");
 var path = require("path");
 var mime = require("mime");
 var mu = require("mu2"); // mustach2
-var express = require('express');
-var app = express();
 
 /*
 server.on("req", function(req, res){
