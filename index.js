@@ -3,20 +3,10 @@ var url = require("url");
 var fs = require("fs");
 var path = require("path");
 var mime = require("mime");
-var mu = require("mu2"); // mustach2
-
-/*
-server.on("req", function(req, res){
-	var urlData = url.parse(req.url, true);
-	//var date = new Date();
-	//res.end(JSON.stringify(date));
-	
-	// poner en browser localhost:3000/recurso/sub?id=1) y ver el json que retorna
-	res.end(JSON.stringify(urlData));
-});*/
+var mu = require("mu2");
 
 var err = '404.html';
-var userCount = 0;
+var visitas = [];
 
 function send404(res){
   res.writeHead(302, {Location: err});
@@ -29,8 +19,7 @@ function sendPage(res, filePath, fileContents) {
 }
 
 function sendStats(res, urlData){
-  console.log('asd');
-  res.end(JSON.stringify(urlData));  
+  res.end(JSON.stringify(visitas));  
 }
 
 function serverWorking(res, absPath) {
@@ -49,18 +38,33 @@ function serverWorking(res, absPath) {
   });
 }
 
+function registrarIP(ip){
+  var existeIP;
+  for (var i = 0; i < visitas.length; i++) {
+    console.log(visitas[i].IP);
+    if (visitas[i].IP == ip){
+      visitas[i].Visitas++;
+      existeIP = true;
+    }
+  }
+  if(!existeIP) visitas.push({"IP": ip, "Visitas": 1});  
+}
+
 var server = http.createServer(function(req, res) {
   var filePath = false;
   var urlData = url.parse(req.url,true);
-  //console.log(urlData);
 
   if (urlData.pathname == '/') {
     filePath = "public/index.html";
     // sumo una visita y guardo su ip
-    userCount++;
-    console.log(req.connection.remoteAddress);
+    var ip = req.connection.remoteAddress;
+    registrarIP(ip);
+
   } else if (urlData.pathname == '/stats' &&
-              urlData.query.user == 'ADMIN' && urlData.query.pass == 'ADMIN'){ sendStats(res, urlData);
+              urlData.query.user == 'ADMIN' && urlData.query.pass == 'ADMIN'){
+    // muestro las visitas 
+    sendStats(res, urlData);
+
   } else {
     filePath = "public" + req.url;
   }

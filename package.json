@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Demo server en Node.js",
   "dependencies": {
+    "express": "^4.14.0",
     "mime": "~1.2.7",
     "mu2": "^0.5.21"
   },

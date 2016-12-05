@@ -7,6 +7,11 @@ var noticia3 = 'El tenista Juan Martín Del Potro, el futbolista Lionel Messi, l
 
 var noticias = [noticia1, noticia2, noticia3];
 
+function cargarFechaActual(){
+   var today = new Date();
+   document.getElementById('fecha').innerHTML = today;
+}
+
 function cambiarImagen(){
    if (l == 0) {
       document.getElementById('kon').src = "img/logo2.png";
@@ -47,6 +52,7 @@ ManejadorDeArticulos.render = function(objectId){
 };
 
 window.onload = function(){
+   cargarFechaActual();
    ManejadorDeArticulos.load();
    ManejadorDeArticulos.render('articulos');
 };
