@@ -7,9 +7,8 @@ var mu = require("mu2"); // mustach2
 var express = require('express');
 var app = express();
 
-/*var server = http.createServer();
-
-server.on("request", function(req, res){
+/*
+server.on("req", function(req, res){
 	var urlData = url.parse(req.url, true);
 	//var date = new Date();
 	//res.end(JSON.stringify(date));
@@ -21,45 +20,54 @@ server.on("request", function(req, res){
 var err = '404.html';
 var userCount = 0;
 
-
-function send404(response){
-  response.writeHead(302, {Location: err});
-  response.end();	
+function send404(res){
+  res.writeHead(302, {Location: err});
+  res.end();	
 }
 
-function sendPage(response, filePath, fileContents) {
-  response.writeHead(200, {"Content-type" : mime.lookup(path.basename(filePath))});
-  response.end(fileContents);
+function sendPage(res, filePath, fileContents) {
+  res.writeHead(200, {"Content-type" : mime.lookup(path.basename(filePath))});
+  res.end(fileContents);
 }
 
-function serverWorking(response, absPath) {
+function sendStats(res, urlData){
+  console.log('asd');
+  res.end(JSON.stringify(urlData));  
+}
+
+function serverWorking(res, absPath) {
   fs.exists(absPath, function(exists) {
     if (exists) {
       fs.readFile(absPath, function(err, data) {
         if (err) {
-          send404(response)
+          send404(res)
         } else {
-          sendPage(response, absPath, data);
+          sendPage(res, absPath, data);
         }
       });
     } else {
-      send404(response);
+      send404(res);
     }
   });
 }
 
-var server = http.createServer(function(request, response) {
+var server = http.createServer(function(req, res) {
   var filePath = false;
+  var urlData = url.parse(req.url,true);
+  //console.log(urlData);
 
-  if (request.url == '/') {
+  if (urlData.pathname == '/') {
     filePath = "public/index.html";
+    // sumo una visita y guardo su ip
     userCount++;
-    console.log(request.connection.remoteAddress);
+    console.log(req.connection.remoteAddress);
+  } else if (urlData.pathname == '/stats' &&
+              urlData.query.user == 'ADMIN' && urlData.query.pass == 'ADMIN'){ sendStats(res, urlData);
   } else {
-    filePath = "public" + request.url;
+    filePath = "public" + req.url;
   }
   var absPath = "./" + filePath;
-  serverWorking(response, absPath);
+  serverWorking(res, absPath);
 });
 
 server.listen(process.env.PORT || 3000);
